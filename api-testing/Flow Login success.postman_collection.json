@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "ba44f1c1-c05b-443f-b7a8-88fcd2a1c1e7",
+		"name": "Flow Login success",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Login success with code = 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var schema = {",
+							"  \"type\": \"object\",",
+							"  \"properties\": {",
+							"    \"id\": { \"type\": \"number\"},",
+							"    \"name\": { \"type\": \"string\" }",
+							"  },",
+							"  \"required\": [\"id\", \"name\"],",
+							"};",
+							"",
+							"var data = pm.response.json();",
+							"",
+							"pm.test('Validate response from login api with success', function () {",
+							"    pm.expect(tv4.validate(data, schema)).to.be.true;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"username\": \"somkiat\",\n   \"password\": \"xxx\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/auth/signin",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
