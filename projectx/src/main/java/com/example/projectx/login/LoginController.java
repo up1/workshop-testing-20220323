@@ -8,7 +8,9 @@ public class LoginController {
 
     @PostMapping("/signin")
     public UserResponse checkUserAndPassword(@RequestBody LoginRequest loginRequest) {
-        return new UserResponse(1, "somkiat");
+        // TODO :: Validate request
+        // TODO :: Login process
+        return new UserResponse(1, loginRequest.getUsername());
     }
 
 }
